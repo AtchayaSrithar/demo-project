@@ -2,15 +2,24 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print current directory
+        run: pwd
+
+      - name: List files in directory
+        run: ls -la
 
       - name: Install dependencies
         run: npm install
-        working-directory: demo-project
+        working-directory: demo-project  # ✅ ONLY if your project is in a subfolder named demo-project
